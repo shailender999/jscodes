@@ -1,6 +1,7 @@
 // Write a polyfill for "filter" function in Javascript 
 
 function arrayFilter(callback) {
+    // if callback is not a function, then throw type error
     if(typeof callback !== 'function'){
         throw new TypeError('Callback must be a function');
     }
