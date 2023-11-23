@@ -11,6 +11,8 @@ function arrayFilter(callback) {
             output.push(_arr[i])
         }
     }
+    // return filtered array which satisfies the callback condition
+    // if no element satisfies the callback condition, return empty array
     return output;
 }
 Array.prototype.arrayFilter = arrayFilter;
