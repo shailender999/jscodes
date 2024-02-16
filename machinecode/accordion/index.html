@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <style>
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .accordion {
+            border: 1px solid grey;
+            border-radius: 10px 10px 0px 0px;
+            transition: 1s;
+        }
+        .accordion .header {
+            background-color: gainsboro;
+            padding: 5px;
+            border-radius: 10px 10px 0px 0px;
+            cursor: pointer;
+        }
+        .accordion .body {
+            display: none;   
+            padding: 10px;
+        }
+        .accordion .body.expanded{
+            display: block;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="accordion">
+            <div class="header" data-for="accordion1">
+                <div>Accordion 1</div>
+                <div>+</div>
+            </div>
+            <div class="body" id="accordion1">
+                This is accordion 1
+            </div>
+        </div>
+        <div class="accordion">
+            <div class="header" data-for="accordion2">
+                <div>Accordion 2</div>
+                <div>+</div>
+            </div>
+            <div class="body" id="accordion2">
+                This is accordion 2
+            </div>
+        </div>
+        <div class="accordion">
+            <div class="header" data-for="accordion3">
+                <div>Accordion 3</div>
+                <div>+</div>
+            </div>
+            <div class="body" id="accordion3">
+                This is accordion 3
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let ele = document.querySelector(".wrapper");
+        console.log(ele);
+        ele.addEventListener("click", function(e){
+            let target_accordion = e.target.getAttribute("data-for");
+            console.log(target_accordion);
+            let accordion = document.getElementById(target_accordion);
+            console.log(accordion);
+            [...document.querySelectorAll(".accordion .body")].map((ele) => ele.classList.remove("expanded"));
+            if(accordion.classList.contains("expanded")) {
+                accordion.classList.remove("expanded");
+            } else {
+                accordion.classList.add("expanded");
+            }
+        })
+    </script>
+</body>
+</html>

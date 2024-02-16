@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            padding: 50px;
+        }
+        .wrapper {
+            position: relative;
+            display: inline;
+            border: 1px solid blue;
+            background-color: aliceblue;
+            padding: 10px;
+        }
+        .tooltip {
+            /* visibility: hidden; */
+            opacity: 0;
+            /* display: none; */
+            width: 100%;
+            background-color: black;
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            padding: 5px;
+            position: absolute;
+            bottom: 110%;
+            left: 0%;
+            transition: opacity 1s;
+        }
+        .tooltip::after {
+            content: " ";
+            position: absolute;
+            top: 100%; /* At the bottom of the tooltip */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+        }
+        .wrapper:hover .tooltip {
+            /* visibility: visible; */
+            opacity: 1;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tooltip</title>
+</head>
+<body>
+    <div class="wrapper">
+        This is a message
+        <span class="tooltip">
+            This is tooltip
+        </span>
+    </div>
+</body>
+</html>
