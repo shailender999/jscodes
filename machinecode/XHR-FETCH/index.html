@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR Request In Vanilla JS</title>
+</head>
+<body>
+    <div>
+        <p style="white-space: break-spaces;">We will use XHR Request and fetch method to make request to get data from API. 
+            Concepts used in this:
+            1. Create XHR Request using Promise
+            2. Create Fetch Request
+            3. Set Request Headers
+            4. Increase the post count after each click using closure
+            5. Async Await implemented
+            6. Single api call for each post even if Multiple button clicks are made. Used Closure to save state;
+            7. Show Loading when data is being fetched;
+            8. Set HTML Contents from JS using innnerHTML.
+            9. Set CSS display property from JS using element.style.display = "none";
+        </p>
+        <button id="fetchButton">Fetch Button</button>
+        <span id="loading" style="visibility: hidden;">Loading...</span>
+        <div id="output"></div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
