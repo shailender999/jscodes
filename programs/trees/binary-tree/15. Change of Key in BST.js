@@ -47,36 +47,79 @@ function inOrder(root, output) {
   }
 }
 
+// method to find the minimum value inside the tree
+function minValueNode(Node) {
+  let current = Node;
+  // as we need to find minimum, it will be the left most child of the tree
+  // so, we iterate till that node and return that node.
+  while(!current.left) {
+    current = current.left;
+  }
+  return current;
+}
+
 function deleteNode(root, key) {
+  // if(root is null, return that root only;)
   if (!root) {
     return root;
   }
+  // find the tree node which has the key
+  // if key is less than current root value, then the key would definitely lie in the left subtree
   if (key < root.key) {
+    // replace the left subtree of current root with node returned from deleted node method.
+    // call deleteNode again to delete node from that left subtree of current root.
     root.left = deleteNode(root.left, key);
-  } else if (key > root.key) {
+  } 
+  // if key is greater than current root value, then the key would definitely lie in the right subtree
+  else if (key > root.key) {
+    // replace the right subtree of current root with node returned from deleted node method.
+    // call deleteNode again to delete node from that right subtree of current root.
     root.right = deleteNode(root.right, key);
-  } else {
+  } 
+  // if the key is same as root's value, then this is the node that needs to be deleted
+  else {
+    // check if node has only one child or no child
     if (!root.left) {
-      temp = root.left;
-      return temp;
+      // if left child is not present, then we need to return the right child node;
+      return root.right;
     } else if (!root.right) {
-      temp = root.right;
-      return temp;
+      // if right child is not present, then we need to return the left child node;
+      return root.left;
     }
+
+    // node with two children: Get the inorder successor (smallest in the right subtree)
+    let temp = minValueNode(root.right);
+    // replace current root value (this is the node which is to be deleted) with the smallest node from the right subtree.
+    root.key = temp.key;
+    // Now, delete that node from right subtree as we have already moved it to some other place.
+    root.right = deleteNode(root.right, temp.key);
   }
+  return root;
 }
 
-function changeKey(root, oldValue, newvalue) {
+function insertNode(root, key) {
+    // if root node is null, we return the new Node to be created with given key value
+    if(!root) { return new Node(key) };
+    // if key is less than current root value, then the key needs to be inserted in left subtree
+    if(key < root.key) {
+      root.left = insertNode(root.left, key);
+    }
+    // if key is greater than current root value, then the key needs to be inserted in right subtree
+    else {
+      root.right = insertNode(root.right, key);
+    }
+    return root;
+}
+
+function changeKey(root, oldValue, newValue) {
+  // base case, if root is null return null as there is no tree.
   if (!root) {
     return null;
   }
-  if (oldValue < root.key) {
-    root.left = changeKey(root.left, oldValue, newvalue);
-  } else if (oldValue > root.key) {
-    root.right = changeKey(root.right, oldValue, newvalue);
-  } else {
-    root.key = newvalue;
-  }
+  // delete the old Value from the tree
+  root = deleteNode(root, oldValue);
+  // insert the new Value in the tree
+  root = insertNode(root, newValue);
   return root;
 }
 
